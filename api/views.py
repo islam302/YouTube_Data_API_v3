@@ -3,18 +3,15 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-API_KEY = 'AIzaSyCDtuiyRmWnIrT7uJu_A0RvrUdOON3yqLE'
+API_KEY = 'AIzaSyA20esOYFWy1cxHVdB-m7bTAzrwnBKkmNc'
 
 
 def extract_video_id(url):
-    # if url short :
     if 'youtu.be' in url:
         return url.split('/')[-1]
-    # if url tall:
     elif 'youtube.com' in url:
         return url.split('v=')[-1].split('&')[0]
     return None
-
 
 def get_youtube_video_info(video_id):
     url = f'https://www.googleapis.com/youtube/v3/videos?id={video_id}&part=snippet&key={API_KEY}'
@@ -31,7 +28,6 @@ def get_youtube_video_info(video_id):
         }
     else:
         return None
-
 
 @csrf_exempt
 def get_video_info(request):
