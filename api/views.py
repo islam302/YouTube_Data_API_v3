@@ -1,7 +1,10 @@
-
-
+import requests
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 API_KEY = 'AIzaSyA20esOYFWy1cxHVdB-m7bTAzrwnBKkmNc'
+
 
 def extract_video_id(url):
     if 'youtu.be' in url:
@@ -39,5 +42,3 @@ def get_video_info(request):
             return JsonResponse({"error": "Video not found"}, status=404)
     else:
         return JsonResponse({"error": "Invalid request method"}, status=400)
-
-
